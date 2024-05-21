@@ -33,8 +33,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
-# ['fullstackapplication-6.onrender.com']
+ALLOWED_HOSTS =['fullstackapplication-7.onrender.com']
 
 
 # Application definition
