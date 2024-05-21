@@ -1,0 +1,151 @@
+/* APP.css */
+.App {
+  text-align: center;
+}
+ 
+.container {
+  display: flex;
+  flex: 50%;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items to the top */
+  margin-left: auto;
+}
+.user-list {
+  width: 48%; /* Adjusted width to fit content better */
+  display: block;
+  margin-left: auto;
+  flex: 50%;
+}
+.add-user {
+  width: 48%; /* Adjusted width to fit content better */
+}
+ 
+/* Style the user list */
+.user-list ul {
+  list-style: none;
+  padding: 0;
+}
+ 
+ 
+ 
+.user-list li {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ 
+.user-list button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+ 
+.user-list button.delete-btn {
+  background-color: #dc3545; /* Red color for delete button */
+  color: white;
+}
+ 
+.user-list button.edit-btn {
+  background-color: #007bff; /* Blue color for edit button */
+  color: white;
+}
+ 
+/* Style the add user form */
+.add-user form {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+ 
+.add-user input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+ 
+.add-user button {
+  width: 100%;
+  padding: 8px 0;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+}
+ 
+.add-user button:hover {
+  background-color: #218838;
+}
+ 
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+ 
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+ 
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+ 
+.btn:hover {
+  background-color: #218838 !important; /* Use !important to override Bootstrap's hover color */
+}
+
+/* Style the table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+/* Style the table header */
+thead th {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style the table body */
+tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style the table rows on hover */
+tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* Style the table buttons */
+table button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style the delete button */
+.table button.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Style the edit button */
+.table button.edit-btn {
+  background-color: #007bff;
+  color: white;
+}
