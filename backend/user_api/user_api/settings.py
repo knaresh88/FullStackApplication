@@ -12,13 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-import environ
 from django.core.cache import cache
-
-env=environ.Env()
-environ.Env.read_env()
-
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-$)j=-=*+j=_^--=#w=%fu5n@np+%vkec4%1(@db7jzt=))ns7-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = True
 
-ALLOWED_HOSTS =['fullstackapplication-7.onrender.com']
+ALLOWED_HOSTS = ['fullstackapplication-7.onrender.com']
 
 
 # Application definition
@@ -165,10 +159,3 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # FEATURE_FLAG_API_KEY ='2718c06a-a451-4d73-ad10-cfcf168a8e94'
-
-CORS_ALLOWED_ORIGIN = env.list('CORS_ALLOWED_ORIGINS_DEPLOY')
-
-CORS_ALLOWED_WHITELIST= env.list('CORS_ALLOWED_WHITELIST_DEPLOY')
-
-
-CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEPLOY')
