@@ -13,10 +13,6 @@ from rest_framework.views import APIView
 from django.shortcuts import render
 import os
 import subprocess
-import redis
-
-
-
 
 
 
