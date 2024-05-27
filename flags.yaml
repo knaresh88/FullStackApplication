@@ -1,0 +1,54 @@
+featureFlags:
+  flags:
+  - flag:
+      name: list_view
+      identifier: list_view
+      description: ""
+      permanent: true
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: Naresh
+          variation: "true"
+  - flag:
+      name: My_Test_Flag
+      identifier: My_Test_Flag
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: Naresh
+          variation: "true"
+  projectIdentifier: FullStackApplication
+  orgIdentifier: default
