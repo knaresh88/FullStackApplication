@@ -15,9 +15,8 @@ import os
 import subprocess
 
 
-
-# api_key = "2718c06a-a451-4d73-ad10-cfcf168a8e94"
-api_key = "751ca7be-6740-4a7c-81b7-e3ef72eb04ef"
+api_key = "2718c06a-a451-4d73-ad10-cfcf168a8e94"
+# api_key = "751ca7be-6740-4a7c-81b7-e3ef72eb04ef"
 
 cf = CfClient(api_key)
 cf.wait_for_initialization()
@@ -33,7 +32,7 @@ class CreateUser(generics.CreateAPIView):
     serializer_class = EmployeeSerializer
 
     def create(self, request, *args, **kwargs):
-        feature_enabled = is_feature_enabled('githubactionsflag','Naresh','Git-Actions', False)
+        feature_enabled = is_feature_enabled('GitHubActionsFlag','Naresh','Git-Actions', False)
         if not feature_enabled:
             return JsonResponse({'message': 'This feature flag is disabled'}, status=status.HTTP_403_FORBIDDEN)
         else:
@@ -45,7 +44,7 @@ class EditUser(generics.UpdateAPIView):
     serializer_class = EmployeeSerializer
 
     def update(self, request, *args, **kwargs):
-        feature_enabled = is_feature_enabled('githubactionsflag','Naresh','Git-Actions', False)
+        feature_enabled = is_feature_enabled('GitHubActionsFlag','Naresh','Git-Actions', False)
         if not feature_enabled:
             return JsonResponse({'message': 'This feature flag is disabled'}, status=403)
         else:
@@ -56,7 +55,7 @@ class DeleteUser(APIView):
     def delete(self, request, pk, format=None):
         employee = self.get_object(pk)
         
-        feature_enabled = is_feature_enabled('githubactionsflag', 'Naresh', 'Git-Actions', False)
+        feature_enabled = is_feature_enabled('GitHubActionsFlag', 'Naresh', 'Git-Actions', False)
         if not feature_enabled:
             return JsonResponse({'message': 'This feature flag is disabled'}, status=status.HTTP_403_FORBIDDEN)
         
