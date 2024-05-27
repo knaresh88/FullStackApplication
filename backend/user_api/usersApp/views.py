@@ -33,7 +33,7 @@ class CreateUser(generics.CreateAPIView):
     serializer_class = EmployeeSerializer
 
     def create(self, request, *args, **kwargs):
-        feature_enabled = is_feature_enabled('CURD_Operations','Naresh','Git-Actions', False)
+        feature_enabled = is_feature_enabled('githubactionsflag','Naresh','Git-Actions', False)
         if not feature_enabled:
             return JsonResponse({'message': 'This feature flag is disabled'}, status=status.HTTP_403_FORBIDDEN)
         else:
@@ -45,7 +45,7 @@ class EditUser(generics.UpdateAPIView):
     serializer_class = EmployeeSerializer
 
     def update(self, request, *args, **kwargs):
-        feature_enabled = is_feature_enabled('CURD_Operations','Naresh','Git-Actions', False)
+        feature_enabled = is_feature_enabled('githubactionsflag','Naresh','Git-Actions', False)
         if not feature_enabled:
             return JsonResponse({'message': 'This feature flag is disabled'}, status=403)
         else:
@@ -56,7 +56,7 @@ class DeleteUser(APIView):
     def delete(self, request, pk, format=None):
         employee = self.get_object(pk)
         
-        feature_enabled = is_feature_enabled('CURD_Operations', 'Naresh', 'Git-Actions', False)
+        feature_enabled = is_feature_enabled('githubactionsflag', 'Naresh', 'Git-Actions', False)
         if not feature_enabled:
             return JsonResponse({'message': 'This feature flag is disabled'}, status=status.HTTP_403_FORBIDDEN)
         
@@ -77,7 +77,7 @@ class ListUsers(generics.ListAPIView):
     serializer_class = EmployeeSerializer
 
     def list(self, request, *args, **kwargs):
-        feature_enabled = is_feature_enabled('My_Test_Flag', 'Naresh', 'Git-Actions', False)
+        feature_enabled = is_feature_enabled('Flag2', 'Naresh', 'Git-Actions', False)
         if not feature_enabled:
             return Response({'message': 'This feature flag is disabled'}, status=status.HTTP_403_FORBIDDEN)
         else:
