@@ -8,32 +8,37 @@ from rest_framework import status
 from rest_framework.response import Response
 from .models import Employee
 from .serializers import EmployeeSerializer
-
+import logging
 from rest_framework.views import APIView
+from django.shortcuts import render
 
-
-api_key = 'fba16fae-57a7-4a93-9284-ec65ef5364cc' #  genarated sdk from Shaik Ashfaq Hussain account 
-
-# api_key='063c2a86-f12a-400c-ad7d-73550437b840'  # new added sdk from new harness account
-
-# api_key = "2718c06a-a451-4d73-ad10-cfcf168a8e94"   # old working sdk from personal account 
-# api_key = "751ca7be-6740-4a7c-81b7-e3ef72eb04ef"   # new sdk 
+api_key = 'fdbe6a44-f878-492c-a18c-f52f64687aba'
 
 cf = CfClient(api_key)
 cf.wait_for_initialization()
 
+logger = logging.getLogger(__name__)
+
 
 def is_feature_enabled(flag_key, target_identifier, target_name, default=False):
     target = Target(identifier=target_identifier, name=target_name)
-    return cf.bool_variation(flag_key, target, default)
+    feature_enabled = cf.bool_variation(flag_key, target, default)
+    logger.debug(f'Feature flag "{flag_key}" for target "{target_identifier}-{target_name}": {feature_enabled}')
+    return feature_enabled
 
-
-
+class FeatureFlagStatusView(APIView):
+    def get(self, request, flag_key):
+        target_identifier = 'Naresh'
+        target_name = 'Git-Actions'
+        feature_enabled = is_feature_enabled(flag_key, target_identifier, target_name, False)
+        return JsonResponse({'feature_enabled': feature_enabled})
+    
 class CreateUser(generics.CreateAPIView):
     serializer_class = EmployeeSerializer
 
     def create(self, request, *args, **kwargs):
         feature_enabled = is_feature_enabled('My_Test_Flag','Naresh','Git-Actions', False)
+
         if not feature_enabled:
             return JsonResponse({'message': 'This feature flag is disabled'}, status=status.HTTP_403_FORBIDDEN)
         else:
@@ -77,7 +82,9 @@ class ListUsers(generics.ListAPIView):
     serializer_class = EmployeeSerializer
 
     def list(self, request, *args, **kwargs):
+        # feature_enabled = is_feature_enabled('list_view', 'Naresh', 'Git-Actions', False)
         feature_enabled = is_feature_enabled('list_view', 'Naresh', 'Git-Actions', False)
+
         if not feature_enabled:
             return Response({'message': 'This feature flag is disabled'}, status=status.HTTP_403_FORBIDDEN)
         else:
