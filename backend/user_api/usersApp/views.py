@@ -22,9 +22,14 @@ logger = logging.getLogger(__name__)
 
 def is_feature_enabled(flag_key, target_identifier, target_name, default=False):
     target = Target(identifier=target_identifier, name=target_name)
-    feature_enabled = cf.bool_variation(flag_key, target, default)
-    logger.debug(f'Feature flag "{flag_key}" for target "{target_identifier}-{target_name}": {feature_enabled}')
-    return feature_enabled
+    return cf.bool_variation(flag_key, target, default)
+    
+feature_enabled = is_feature_enabled('list_view', 'Naresh', 'Git-Actions', False)
+logger.info(f"Feature flag 'crud' is set to: {feature_enabled}")
+
+    # feature_enabled = cf.bool_variation(flag_key, target, default)
+    # logger.debug(f'Feature flag "{flag_key}" for target "{target_identifier}-{target_name}": {feature_enabled}')
+    # return feature_enabled
 
 class FeatureFlagStatusView(APIView):
     def get(self, request, flag_key):
