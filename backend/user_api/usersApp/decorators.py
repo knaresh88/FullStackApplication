@@ -1,6 +1,5 @@
 import os
 from unittest import skip
-from django.conf import settings
 
 def skip_if_feature_flag_disabled(feature_flag):
     """
@@ -8,7 +7,7 @@ def skip_if_feature_flag_disabled(feature_flag):
     """
     def decorator(test_func):
         def wrapper(self, *args, **kwargs):
-            if not os.environ.get(feature_flag, False):
+            if os.environ.get(feature_flag, '0') == '0':
                 self.skipTest(f"Skipping test because {feature_flag} is disabled")
             else:
                 return test_func(self, *args, **kwargs)
@@ -21,7 +20,7 @@ def skip_if_feature_flag_enabled(feature_flag):
     """
     def decorator(test_func):
         def wrapper(self, *args, **kwargs):
-            if os.environ.get(feature_flag, False):
+            if os.environ.get(feature_flag, '0') == '1':
                 self.skipTest(f"Skipping test because {feature_flag} is enabled")
             else:
                 return test_func(self, *args, **kwargs)
