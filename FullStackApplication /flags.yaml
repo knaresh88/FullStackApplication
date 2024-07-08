@@ -1,0 +1,60 @@
+featureFlags:
+  flags:
+  - flag:
+      name: Jira_flag
+      identifier: Jira_flag
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: develop
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "off"
+      - identifier: test
+        default:
+          onVariation: "false"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: MyTargetID
+          variation: "true"
+  - flag:
+      name: My_Test_Flag
+      identifier: My_Test_Flag
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: develop
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+      - identifier: test
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+  projectIdentifier: CloudApps
+  orgIdentifier: TriNet
