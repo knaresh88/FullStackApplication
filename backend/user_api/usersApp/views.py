@@ -12,7 +12,7 @@ import logging
 from rest_framework.views import APIView
 from django.shortcuts import render
 
-api_key = 'fdbe6a44-f878-492c-a18c-f52f64687aba'
+api_key = 'bc6c0d3b-e242-41ed-a2de-a647181d589c'
 
 cf = CfClient(api_key)
 cf.wait_for_initialization()
@@ -87,7 +87,7 @@ class ListUsers(generics.ListAPIView):
     serializer_class = EmployeeSerializer
 
     def list(self, request, *args, **kwargs):
-        # feature_enabled = is_feature_enabled('list_view', 'Naresh', 'Git-Actions', False)
+        # feature_enabled = is_feature_enabled('Jira_flag', 'MyTargetID', 'MyTargetName', False)
         feature_enabled = is_feature_enabled('list_view', 'Naresh', 'Git-Actions', False)
 
         if not feature_enabled:
