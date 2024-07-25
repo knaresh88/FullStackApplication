@@ -40,7 +40,7 @@ authors = ["Naresh <Naresh.email@example.com>"]
 packages = [{ include = "user_api" }]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 django = "^5.0"
 
 [tool.poetry.dev-dependencies]
