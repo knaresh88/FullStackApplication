@@ -2,32 +2,40 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.11, 3.12]
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.12'
-    - name: List files in the root directory
-      run: ls -la
+        python-version: ${{ matrix.python-version }}
 
     - name: Install dependencies
       run: |
         python -m venv venv
         source venv/bin/activate
-        pip install flake8 black isort pre-commit
+        pip install --upgrade pip
+        pip install poetry
+        poetry install
+        pip install pre-commit
+        pre-commit install
 
-    - name: Run pre-commit
+    - name: Run pre-commit checks
       run: |
         source venv/bin/activate
         cd backend/user_api
