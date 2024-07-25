@@ -1,0 +1,50 @@
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+exclude = '''
+/(
+  \.git
+| \.hg
+| \.mypy_cache
+| \.tox
+| \.venv
+| _build
+| buck-out
+| build
+| dist
+| migrations
+)/
+'''
+skip-string-normalization = true
+skip-magic-trailing-comma = false
+
+[tool.isort]
+profile = "black"
+line_length = 88
+skip_gitignore = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+  "tests",
+  "user_api"
+]
+
+[tool.poetry]
+name = "user_api"
+version = "0.1.0"
+description = "A Django project"
+authors = ["Naresh <Naresh.email@example.com>"]
+packages = [{ include = "user_api" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.0"
+
+[tool.poetry.dev-dependencies]
+black = "^24.4.2"
+flake8 = "^7.1.0"
+pytest = "^8.2.0"
+isort = "^5.13.1"
