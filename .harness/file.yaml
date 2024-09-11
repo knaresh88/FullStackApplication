@@ -105,7 +105,7 @@ featureFlags:
         state: "on"
       - identifier: stage
         default:
-          onVariation: "false"
+          onVariation: "true"
           offVariation: "false"
         state: "off"
       - identifier: staging
